@@ -23,7 +23,7 @@ const displaycatebar = (categories) => {
     html += `</ul>`;
     sidebar.innerHTML = html;
 
-    
+
     // Adding event listeners to category items
     document.getElementById('all').addEventListener('click', () => {
         setActiveCategory('all');
@@ -48,3 +48,101 @@ const setActiveCategory = (id) => {
     const selectedCategory = document.getElementById(id);
     selectedCategory.classList.add('active-category', 'bg-green-500', 'text-white');
 }
+
+
+
+const loadPlants = () => {
+    fetch("https://openapi.programming-hero.com/api/plants")
+    .then(res => res.json())
+    .then(data => {
+        displayPlants(data.plants);
+    })
+}
+
+const loadPlantsByCategory = (categoryId) => {
+    fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
+    .then(res => res.json())
+    .then(data => {
+        displayPlants(data.plants);
+    })
+}
+const displayPlants = (plants) => {
+    const productGrid = document.getElementById("product-grid");
+    
+    let html = '';
+    
+    plants.forEach(plant => {
+        html += `
+        <div class="card bg-white rounded-lg shadow-md overflow-hidden max-h-fit">
+            <figure class="h-48">
+                <img 
+                    alt="${plant.name}" 
+                    src="${plant.image}"
+                    class="w-full h-full object-cover"
+                /> 
+            </figure>
+            <h2 class="mt-4 font-semibold text-lg text-slate-900 px-6 cursor-pointer">
+                ${plant.name}
+            </h2>
+            <p class="mt-1 text-slate-600  h-30 text-justify text-sm leading-relaxed px-6">
+                ${plant.description}               
+            </p>
+            <div class="mt-6 flex items-center justify-between px-2">
+                <span class="bg-[#d4f4d7] text-[#2a8a4a] rounded-full px-4 py-1 text-sm font-medium select-none">
+                    ${plant.category}
+                </span>
+                <span class="font-bold text-lg text-slate-900 flex items-center">
+                    ৳${plant.price}
+                </span>
+            </div>
+            <button onclick="addToCard(${plant.id}, '${plant.name}', ${plant.price})" class="add-to-card-btn my-6 mx-3 bg-[#1f6f3d] text-white text-lg font-normal rounded-full py-3 hover:bg-[#1a5c31] transition-colors" type="button">
+                Add to Cart
+            </button>
+        </div>
+        `;
+    });
+    
+    productGrid.innerHTML = html;
+}
+
+const addToCard = (id, name, price) => {
+    const showCardSec = document.getElementById("add-to-card");
+    const totalPriceElement = document.getElementById("total-price");
+    
+    // Create a new cart item
+    const newDiv = document.createElement('div');
+    newDiv.className = 'flex justify-between items-center bg-green-100 p-2 rounded mb-2';
+    newDiv.id = `cart-item-${id}`;
+    newDiv.innerHTML = `
+        <span>${name}</span>
+        <span onclick="removeFromCard('cart-item-${id}', ${price})" class="cursor-pointer text-red-500 hover:text-red-700">❌</span>
+        <span>৳${price}</span>   
+    `;
+    
+    // Add to cart
+    showCardSec.appendChild(newDiv);
+    
+    // Update total price
+    const currentTotal = parseFloat(totalPriceElement.innerText.replace('৳', '')) || 0;
+    const newTotal = currentTotal + price;
+    totalPriceElement.innerText = `৳${newTotal}`;
+}
+
+const removeFromCard = (itemId, price) => {
+    const itemToRemove = document.getElementById(itemId);
+    const totalPriceElement = document.getElementById("total-price");
+    
+    if (itemToRemove) {
+        // Remove the item from the cart
+        itemToRemove.remove();
+        
+        // Update total price by subtracting the removed item's price
+        const currentTotal = parseFloat(totalPriceElement.innerText.replace('৳', '')) || 0;
+        const newTotal = currentTotal - price;
+        totalPriceElement.innerText = `৳${newTotal}`;
+    }
+}
+
+// Initialize the page
+loadCategory();
+loadPlants(); // Load all plants by default
