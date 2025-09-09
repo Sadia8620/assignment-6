@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Earth</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="bg-[#f0fdf4]">
 
-      <!-- Navbar Section -->
- <nav>
-            <div class="navbar bg-[#15803D] shadow-sm text-white pb-5 
+    <!-- Navbar Section -->
+    <nav>
+        <div class="navbar bg-[#15803D] shadow-sm text-white pb-5 
             flex flex-col sm:flex-row">
-  <div class="navbar-start">
-    <a class="btn btn-ghost text-3xl sm:text-4xl font-bold  ml-[-15px] sm:ml-25">Green Earth</a>
-  </div>
-  <div class="navbar-center flex font-semibold">
-    <ul class="menu menu-horizontal px-1 text-[16px] sm:text-[20px]">
-      <li><a>About</a></li>
-      <li>
-          <summary>Gallery</summary>
-      </li>
-      <li><a>Plant a Tree</a></li>
-    </ul>
-  </div>
-  <div class="navbar-end ml-[-10px]">
-    <a class="btn bg-[#FACC15] rounded-[30px] text-[#15803D] text-[16px] font-medium
+            <div class="navbar-start">
+                <a class="btn btn-ghost text-3xl sm:text-4xl font-bold  ml-[-15px] sm:ml-25">Green Earth</a>
+            </div>
+            <div class="navbar-center flex font-semibold">
+                <ul class="menu menu-horizontal px-1 text-[16px] sm:text-[20px]">
+                    <li><a>About</a></li>
+                    <li>
+                        <summary>Gallery</summary>
+                    </li>
+                    <li><a>Plant a Tree</a></li>
+                </ul>
+            </div>
+            <div class="navbar-end ml-[-10px]">
+                <a class="btn bg-[#FACC15] rounded-[30px] text-[#15803D] text-[16px] font-medium
     hover:bg-yellow-300 sm:mr-25">
-        Plant a Tree</a>
-  </div>
-</div>
-</nav>
+                    Plant a Tree</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Banner Section -->
+  <section class="bg-[#CFF0DC] flex flex-col md:flex-row items-center justify-between mb-20 px-4 md:px-20">
     
+    <!-- Left Image -->
+    <div class=" h-[100px] w-[100px] sm:h-full sm:w-auto">
+        <img src="./assets/hero-leaf1.png" alt="" class="w-full h-full">
+    </div>
+
+    <!-- Text -->
+    <div class="text-center md:text-left md:w-2/3 mt-6 md:mt-0">
+        <h1 class="text-[20px] sm:text-[40px] font-medium sm:font-extrabold mb-4 text-center">
+            Plant a Tree, Grow a Future
+        </h1>
+        <p class="text-[#1f2937] mb-6 text-center sm:text-lg">
+            Join our mission to plant 1 million trees and make the Earth greener for future generations.
+        </p>
+        <a href="#" class="btn bg-[#FACC15] rounded-[30px] text-[#15803D] text-[16px] font-medium  sm:ml-[260px] sm:px-6 sm:py-3 hover:bg-yellow-300">
+            Get Involved
+        </a>
+    </div>
+
+
+    <!-- Right Image -->
+    <div class="h-[100px] w-[100px] sm:h-full sm:w-auto mt-6 md:mt-0">
+        <img src="./assets/hero-leaf2.png" alt="" class="w-full h-full">
+    </div>
+</section>
+    
+
+
 </body>
+
 </html>
